@@ -2,10 +2,10 @@
   "name": "nodejs",
   "version": "1.0.0",
   "description": "nodejs course",
-  "main": "app.js",
+  "main": "node.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js",
+    "start": "nodemon node.js",
     "start-express": "nodemon express.js"
   },
   "author": "",
