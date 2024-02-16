@@ -8,6 +8,10 @@ const app = express();
 const adminData = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 
+/**using the pug template engine */
+app.set("view engine", "pug");
+app.set("views", "views");
+
 /**serving the static files like public css files*/
 app.use(express.static(path.join(__dirname, "public")));
 

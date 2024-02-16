@@ -13,10 +13,15 @@ const adminData = require("./admin");
 
 /**1.serving html file
  * 2.path is inbuild module to configure file path
- */
 router.get("/", (req, res, next) => {
   console.log(adminData.products); //getting the store req data from add product page
   res.sendFile(path.join(__dirname, "../", "views", "shop.html"));
+});
+ */
+
+router.get("/", (req, res, next) => {
+  const products = adminData.products;
+  res.render("shop", { prods: products, docTitle: "Shop" });
 });
 
 module.exports = router;
