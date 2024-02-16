@@ -4,6 +4,8 @@ const router = express.Router();
 
 const rootDir = require("../util/path");
 
+const products = [];
+
 /**
  * 
 router.use("/add-product", (req, res, next) => {
@@ -27,8 +29,9 @@ router.use("/add-product", (req, res, next) => {
   res.sendFile(path.join(rootDir, "views", "add-product.html"));
 });
 router.post("/product", (req, res, next) => {
-  console.log(req.body);
+  products.push({ title: req.body.title }); // storing the data to use in entire app
   res.redirect("/");
 });
 
-module.exports = router;
+exports.routes = router;
+exports.products = products;
