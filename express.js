@@ -7,6 +7,10 @@ const app = express();
 
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
+
+/**serving the static files like public css files*/
+app.use(express.static(path.join(__dirname, "public")));
+
 /**
  * 1.installing the express, importing it and creating the middleware 
  * using app.use() 
