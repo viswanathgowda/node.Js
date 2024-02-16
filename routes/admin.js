@@ -24,9 +24,14 @@ router.use("/add-product", (req, res, next) => {
 /**1.building custom util file for root path using
  * path.dirname(require.main.filename)
  *
- */
 router.use("/add-product", (req, res, next) => {
   res.sendFile(path.join(rootDir, "views", "add-product.html"));
+});
+ */
+
+/**rendring/sending the pug file to client */
+router.use("/add-product", (req, res, next) => {
+  res.render("add-product", { pageTitle: "Add Product" });
 });
 router.post("/product", (req, res, next) => {
   products.push({ title: req.body.title }); // storing the data to use in entire app

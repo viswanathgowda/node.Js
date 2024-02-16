@@ -87,8 +87,14 @@ app.use(shopRoutes);
 
 /**1.serving 404 html file
  * 2.path is inbuild module to configure file path
- */
 app.use((req, res, next) => {
   res.status(404).sendFile(path.join(__dirname, "views", "404.html"));
 });
+ */
+
+/**sending 404 pug page */
+app.use((req, res, next) => {
+  res.status(404).render("404");
+});
+
 app.listen(3000);
