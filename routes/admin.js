@@ -4,7 +4,9 @@ const router = express.Router();
 
 const rootDir = require("../util/path");
 
-const products = [];
+const productsController = require('../controllers/products')
+
+
 
 /**
  * 
@@ -29,13 +31,15 @@ router.use("/add-product", (req, res, next) => {
 });
  */
 
-/**rendring/sending the pug file to client */
+/**rendring/sending the pug/ejs file to client
+ * 
 router.get("/add-product", (req, res, next) => {
   res.render("add-product", {
     pageTitle: "Add Product",
     path: "/admin/add-product",
   });
 });
+
 router.post("/add-product", (req, res, next) => {
   products.push({ title: req.body.title }); // storing the data to use in entire app
   res.redirect("/");
@@ -43,3 +47,15 @@ router.post("/add-product", (req, res, next) => {
 
 exports.routes = router;
 exports.products = products;
+ * 
+ */
+
+/**using the contoller to render the file to client
+ * 
+ */
+
+router.get('/add-product', productsController.getAddProduct)
+
+router.post("/add-product", productsController.postAddProduct);
+
+module.exports = router

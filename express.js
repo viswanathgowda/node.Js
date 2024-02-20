@@ -5,8 +5,11 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const app = express();
 
-const adminData = require("./routes/admin");
+// const adminData = require("./routes/admin");
+const adminRoutes = require('./routes/admin')
 const shopRoutes = require("./routes/shop");
+
+const errorController = require('./controllers/error')
 
 /**using the pug template engine 
  * 
@@ -89,7 +92,8 @@ app.use((req, res, next) => {
 });
  */
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use("/admin", adminData.routes);
+// app.use("/admin", adminData.routes);
+app.use('/admin', adminRoutes)
 app.use(shopRoutes);
 
 /**1.serving 404 html file
@@ -99,9 +103,13 @@ app.use((req, res, next) => {
 });
  */
 
-/**sending 404 pug page */
+/**sending 404 pug page
+ * 
 app.use((req, res, next) => {
   res.status(404).render("404", { pageTitle: "Page Not Found" });
 });
+ */
+
+app.use(errorController.get404)
 
 app.listen(3000);
